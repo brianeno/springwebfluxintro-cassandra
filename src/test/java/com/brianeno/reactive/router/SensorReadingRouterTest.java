@@ -2,14 +2,11 @@ package com.brianeno.reactive.router;
 
 import com.brianeno.reactive.ReactiveApplication;
 import com.brianeno.reactive.handler.SensorReadingHandler;
-import com.brianeno.reactive.model.Sensor;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import java.time.Duration;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = ReactiveApplication.class)
