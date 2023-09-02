@@ -17,8 +17,10 @@ public class SensorReadingRouter {
     public RouterFunction<ServerResponse> getAllSensorRoutes(SensorReadingHandler sensorReadingHandler) {
 
         return RouterFunctions.route(RequestPredicates.GET("/v1/readings/{id}")
-                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), sensorReadingHandler::helloSpringWebFluxMono).
-                andRoute(RequestPredicates.GET("/v1/readings")
-                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), sensorReadingHandler::helloSpringWebFluxFlux);
+                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), sensorReadingHandler::getById)
+                .andRoute(RequestPredicates.GET("/v1/readings/{id}/reported/{reportedTime}")
+                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), sensorReadingHandler::getByIAndReportedTime)
+                .andRoute(RequestPredicates.GET("/v1/readings")
+                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), sensorReadingHandler::getAll);
     }
 }

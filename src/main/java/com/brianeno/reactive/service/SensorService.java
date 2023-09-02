@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,5 +30,13 @@ public class SensorService {
         } else {
             return Mono.empty();
         }
+    }
+
+    public Flux<Sensor> findByIdAndReportedTime(String id,
+                                                LocalDateTime reportedTime) {
+
+        List<Sensor> list = this.repository.findByKeySensorIdAndKeyReportedTimeGreaterThan(id,
+                reportedTime);
+        return Flux.fromIterable(list);
     }
 }
